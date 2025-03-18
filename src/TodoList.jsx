@@ -10,19 +10,32 @@ const TodoList = () => {
         setnewTask(event.target.value)
     }
     function addTask(){
-        setnewTask(t =>[...t , newTask]);
-        setnewTask('')
+        if (newTask.trim() !== '') {
+            setTask(t =>[...t , newTask]);
+            setnewTask('');
+            
+        }
         
 
     }
     function deleteTask(index){
-            setTask(task.filter((_,i) => i !== index)); 
+        const Delete =(task.filter((_,i) => i !== index));
+        setTask(Delete)
     }
     function moveTaskUp(index){
+        if (index > 0) {
+            const updatedTask = [...task];
+            [updatedTask[index],updatedTask[index-1]] = [updatedTask[index-1],updatedTask[index]];
+            setTask(updatedTask)
+        }
 
     }
-    function moveTaskDown(){
-
+    function moveTaskDown(index){
+        if (index < task.length - 1) {
+            const updatedTask = [...task];
+            [updatedTask[index],updatedTask[index+1]] = [updatedTask[index+1],updatedTask[index]];
+            setTask(updatedTask)
+        }
     }
 
     
